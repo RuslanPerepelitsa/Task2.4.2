@@ -7,9 +7,13 @@
 </head>
 <body>
 <h2>Update user</h2>
+<br>
 <form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
     <label th:for="username">Username</label>
     <input type="text" name="username" th:id="username" th:value="${user.getUsername()}">
+    <br/>
+    <label th:for="password">Password</label>
+    <input type="text" name="password" th:id="password" th:value="${user.getPassword()}">
     <br/>
     <label th:for="firstName">First name</label>
     <input type="text" name="firstName" th:id="firstName" th:value="${user.getFirstName()}">
@@ -19,10 +23,19 @@
     <br/>
     <label th:for="email">Email</label>
     <input type="text" name="email" th:id="email" th:value="${user.getEmail()}">
-    <label th:for="roles">Role</label>
-    <div>
-        <tr th:each="role:${user.getRoles()}"></tr>
-    </div>
-    </form>
+    <br/>
+    <label>USER</label>
+    <input type="checkbox" value="ROLE_USER" th:name="checkBoxRoles"/>
+    <br>
+    <label>ADMIN</label>
+    <input type="checkbox" value="ROLE_ADMIN" th:name="checkBoxRoles"/>
+    <br><br>
+    <input type="submit" value="Edit"/>
+</form>
+<br>
+<form th:method="delete" th:action="@{/admin/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete">
+</form>
+<h3><a href="/logout">Logout</a></h3>
 </body>
 </html>

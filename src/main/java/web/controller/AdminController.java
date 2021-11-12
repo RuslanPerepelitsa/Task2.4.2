@@ -58,13 +58,19 @@ public class AdminController {
     }
 
     @GetMapping("{id}/edit")
-    public String editUser(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        public String editUser(@PathVariable("id") long id, Model model) {
+            model.addAttribute("user", userService.getUserById(id));
+            model.addAttribute("role",roleService.getAllRoles());
         return "admin/editUser";
     }
 
     @PatchMapping("/{id}")
-    public String patchEditUser(@ModelAttribute("user") User user) {
+    public String patchEditUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
+        Set<Role> roles = new HashSet<>();
+        for (String role : checkBoxRoles) {
+            roles.add(roleService.getRoleByName(role));
+        }
+        user.setRoles(roles);
         userService.editUser(user);
         return "redirect:/admin/users";
     }
