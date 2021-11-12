@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+<body>
+<table th:border ="1">
+    <tr>
+        <thead>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+        </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.getUsername()}">Username</td>
+        <td th:text="${user.getFirstName()}">First name</td>
+        <td th:text="${user.getLastName()}">Last name</td>
+        <td th:text="${user.getEmail()}">Email</td>
+        <td>
+        <div th:each="role: ${user.getRoles()}">
+            <span th:if="(${role.getName()} == 'ROLE_USER')" th:utext="User"></span>
+            <span th:if="(${role.getName()} == 'ROLE_ADMIN')" th:utext="Admin"></span>
+        </div>
+        </td>
+        <td><a th:href="@{/admin/{id}(id=${user.getId()})}">Info</a></td>
+        <td><a th:href="@{/admin/{id}/edit(id=${user.getId()})}">Edit</a></td>
+    </tr>
+    <td><a th:href="@{/login}">Log out</a></td>
+    <tbody/>
+
+</table>
+<p><a href="/admin/add">Add user</a></p>
+
+
+
+</body>
+</html>
