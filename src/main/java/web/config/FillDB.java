@@ -24,14 +24,14 @@ public class FillDB {
 
     @PostConstruct
     public void addTestUsers() {
-        Role roleAmin = new Role("ROLE_ADMIN");
+        Role roleAdmin = new Role("ROLE_ADMIN");
         Role roleUser = new Role("ROLE_USER");
         Set<Role> adminRoles = new HashSet<>();
         Set<Role> userRoles = new HashSet<>();
-        adminRoles.add(roleAmin);
+        adminRoles.add(roleAdmin);
         adminRoles.add(roleUser);
         userRoles.add(roleUser);
-        roleService.addRole(roleAmin);
+        roleService.addRole(roleAdmin);
         roleService.addRole(roleUser);
         User user1 = new User("Ruslan", "Perepelitsa", "Ruslan0709", "admin","ruslan@gmail.com");
         User user2 = new User("Petr", "Ivanov", "Petr227", "user","petr777@mail.ru");
