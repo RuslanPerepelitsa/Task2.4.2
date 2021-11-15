@@ -64,7 +64,7 @@ public class AdminController {
         return "admin/editUser";
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public String patchEditUser(@ModelAttribute User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
         Set<Role> roles = new HashSet<>();
         for (String role : checkBoxRoles) {
